@@ -51,6 +51,11 @@ const reducer = (state = initialState, action) => {
           return result;
         }, {})
       });
+    case 'CHECKOUT':
+      return {
+        ...state,
+        cart: {}
+      };
     default:
       return state;
   }

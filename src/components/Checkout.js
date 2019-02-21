@@ -6,6 +6,11 @@ class Checkout extends Component {
     super(props);
     this.state = {};
   }
+
+  checkout = () => {
+    this.props.checkout();
+  };
+
   render() {
     const { cart } = this.props;
 
@@ -26,7 +31,12 @@ class Checkout extends Component {
       <React.Fragment>
         <h1>Checkout</h1>
         <h3>${totalPrice}</h3>
-        <button>Checkout</button>
+        <button
+          onClick={this.checkout}
+          disabled={values.length !== 0 ? false : true}
+        >
+          Checkout
+        </button>
       </React.Fragment>
     );
   }
@@ -38,4 +48,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = {
+  checkout: () => ({ type: 'CHECKOUT' })
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);
