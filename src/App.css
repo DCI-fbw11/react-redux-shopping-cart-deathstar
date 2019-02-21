@@ -1,3 +1,15 @@
+#root {
+  padding: 1em;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  margin-right: 1em;
+}
+
 .remove-button-hidden {
   display: none;
 }
