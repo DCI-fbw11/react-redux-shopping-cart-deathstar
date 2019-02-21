@@ -16,10 +16,41 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: {
           ...state.products,
-          [action.payload[0].id]: action.payload[0]
+          [action.payload.catalogUpdateItem.id]:
+            action.payload.catalogUpdateItem
         },
-        cart: { ...state.cart, [action.payload[0].id]: action.payload[1] }
+        cart: {
+          ...state.cart,
+          [action.payload.cartUpdateItem.id]: action.payload.cartUpdateItem
+        }
       };
+    case 'REMOVE_ONE_ITEM':
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          [action.payload.catalogUpdateItem.id]:
+            action.payload.catalogUpdateItem
+        },
+        cart: {
+          ...state.cart,
+          [action.payload.cartUpdateItem.id]: action.payload.cartUpdateItem
+        }
+      };
+    case 'REMOVE_ALL_ITEMS':
+      return Object.assign({}, state, {
+        products: {
+          ...state.products,
+          [action.payload.catalogUpdateItem.id]:
+            action.payload.catalogUpdateItem
+        },
+        cart: Object.keys(state.cart).reduce((result, key) => {
+          if (key !== action.payload.idToChange) {
+            result[key] = state.cart[key];
+          }
+          return result;
+        }, {})
+      });
     default:
       return state;
   }

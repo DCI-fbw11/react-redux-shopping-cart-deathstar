@@ -36,7 +36,7 @@ class Catalog extends Component {
       inventory: updateValue
     };
 
-    this.props.addToCart([catalogUpdateItem, cartUpdateItem]);
+    this.props.addToCart({ catalogUpdateItem, cartUpdateItem });
   };
 
   render() {
@@ -48,26 +48,22 @@ class Catalog extends Component {
         <h1>Catalog</h1>
         <ul>
           {values.map(item => {
+            const { id, title, price, inventory } = item;
             return (
-              <div
-                className='item'
-                style={{ margin: '1em' }}
-                key={item.id}
-                id={item.id}
-              >
+              <div className='item' style={{ margin: '1em' }} key={id} id={id}>
                 <li>
-                  <span>{item.title}</span>
+                  <span>{title}</span>
                   {' | '}
-                  <span>{item.price}</span>
+                  <span>${price}</span>
                   {' | '}
-                  <span>{item.inventory}</span>
+                  <span>{inventory}</span>
                 </li>
                 <button
                   style={{ margin: '0.5em' }}
                   onClick={this.addToCart}
-                  disabled={item.inventory ? false : true}
+                  disabled={inventory ? false : true}
                 >
-                  {item.inventory ? 'Add To Cart' : 'Sold Out'}
+                  {inventory ? 'Add To Cart' : 'Sold Out'}
                 </button>
               </div>
             );
