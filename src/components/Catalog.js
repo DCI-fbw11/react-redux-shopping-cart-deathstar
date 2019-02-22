@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {addProduct} from '../modules/actions'
 
 class Catalog extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  addToCart: payload => ({ type: 'ADD_TO_CART', payload: payload })
+  addToCart: payload => addProduct(payload)
 };
 
 export default connect(

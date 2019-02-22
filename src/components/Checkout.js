@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {checkout} from '../modules/actions'
 
 class Checkout extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  checkout: () => ({ type: 'CHECKOUT' })
+  checkout: () => checkout()
 };
 
 export default connect(

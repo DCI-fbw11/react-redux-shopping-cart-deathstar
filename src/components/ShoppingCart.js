@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {removeOne,removeAll} from '../modules/actions'
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class ShoppingCart extends Component {
       inventory: itemFromCatalog.inventory + itemFromCart.inventory
     };
 
-    this.props.removeAllItemsFromCart({ idToChange, catalogUpdateItem });
+    this.props.removeAllItemsFromCart(catalogUpdateItem);
   };
 
   render() {
@@ -100,14 +101,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  removeItemFromCart: payload => ({
-    type: 'REMOVE_ONE_ITEM',
-    payload
-  }),
-  removeAllItemsFromCart: id => ({
-    type: 'REMOVE_ALL_ITEMS',
-    payload: id
-  })
+  removeItemFromCart: payload => removeOne(payload),
+  removeAllItemsFromCart: id => removeAll(id)
 };
 
 export default connect(

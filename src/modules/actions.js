@@ -1,26 +1,28 @@
-export function addProduct(product){
+import {ADD_PRODUCT,REMOVE_ONE,REMOVE_ALL,CHECKOUT} from './actionTypes'  
+
+export function addProduct(payload){
   return {
-    type: 'ADD_PRODUCT',
-    product
+    type: ADD_PRODUCT,
+    payload
   }
 }
 
-export function checkout(){
+export function removeOne(payload){
   return {
-    type: 'CHECKOUT'
+    type: REMOVE_ONE,
+    payload
   }
 }
 
-export function removeOne(product){
+export function removeAll(payload){
   return {
-    type: 'REMOVE_ONE',
-    product
+    type: REMOVE_ALL,
+    payload
   }
 }
 
-export function removeAll(product){
+export function checkout(payload){
   return {
-    type: 'REMOVE_ALL',
-    product
+    type: CHECKOUT
   }
 }
